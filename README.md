@@ -1,4 +1,4 @@
-# Password-Generator-with-GUI
+# Password Generator with GUI
 A password generator using C# and Python. This simple project was made to train integration of Python into C#. I am going to expand functionality of this porgram.
 
 # Usage
