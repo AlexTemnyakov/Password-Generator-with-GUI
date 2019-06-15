@@ -57,15 +57,16 @@ namespace Password_Generator_with_GUI
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lengthOfPasswordUpDown = new System.Windows.Forms.NumericUpDown();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.countOfPasswordsUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lengthOfPasswordUpDown)).BeginInit();
             this.SuspendLayout();
             // 
-            // numericUpDown1
+            // countOfPasswordsUpDown
             // 
             this.countOfPasswordsUpDown.BackColor = System.Drawing.SystemColors.Window;
             this.countOfPasswordsUpDown.Location = new System.Drawing.Point(58, 37);
-            this.countOfPasswordsUpDown.Name = "numericUpDown1";
+            this.countOfPasswordsUpDown.Name = "countOfPasswordsUpDown";
             this.countOfPasswordsUpDown.Size = new System.Drawing.Size(57, 20);
             this.countOfPasswordsUpDown.TabIndex = 0;
             this.countOfPasswordsUpDown.ValueChanged += new System.EventHandler(this.CountOfPasswordsUpDown_ValueChanged);
@@ -84,7 +85,7 @@ namespace Password_Generator_with_GUI
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Location = new System.Drawing.Point(100, 84);
+            this.button1.Location = new System.Drawing.Point(104, 123);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(124, 32);
             this.button1.TabIndex = 2;
@@ -103,20 +104,31 @@ namespace Password_Generator_with_GUI
             this.label2.TabIndex = 3;
             this.label2.Text = "Length of a password";
             // 
-            // numericUpDown2
+            // lengthOfPasswordUpDown
             // 
             this.lengthOfPasswordUpDown.BackColor = System.Drawing.SystemColors.Window;
             this.lengthOfPasswordUpDown.Location = new System.Drawing.Point(217, 38);
-            this.lengthOfPasswordUpDown.Name = "numericUpDown2";
+            this.lengthOfPasswordUpDown.Name = "lengthOfPasswordUpDown";
             this.lengthOfPasswordUpDown.Size = new System.Drawing.Size(57, 20);
             this.lengthOfPasswordUpDown.TabIndex = 4;
             this.lengthOfPasswordUpDown.ValueChanged += new System.EventHandler(this.LengthOfPasswordUpDown_ValueChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(58, 78);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(126, 17);
+            this.checkBox1.TabIndex = 5;
+            this.checkBox1.Text = "Only digits and letters";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // PasswordGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 142);
+            this.ClientSize = new System.Drawing.Size(348, 184);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.lengthOfPasswordUpDown);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
@@ -138,6 +150,7 @@ namespace Password_Generator_with_GUI
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown lengthOfPasswordUpDown;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

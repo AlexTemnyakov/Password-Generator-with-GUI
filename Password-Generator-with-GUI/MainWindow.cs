@@ -64,7 +64,10 @@ namespace Password_Generator_with_GUI
             str += Convert.ToString(m.getLengthOfPassword());
             str += "', 'count' : '";
             str += Convert.ToString(m.getCountOfPasswords());
+            str += "', 'only letters and digits' : '";
+            str += (checkBox1.Checked) ? "true" : "false";
             str += "' }";
+            Console.WriteLine(checkBox1.Checked);
             Console.WriteLine(str);
             string pyScriptPath = "res\\src\\Python\\password_generator.py";
             // convert input arguments to JSON string
