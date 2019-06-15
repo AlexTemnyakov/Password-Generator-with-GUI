@@ -29,6 +29,7 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using System.Diagnostics;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Password_Generator_with_GUI
 {
@@ -60,6 +61,24 @@ namespace Password_Generator_with_GUI
             Console.WriteLine("Length" + m.getCountOfPasswords());
         }
 
+        // get python path from environtment variable
+        private string GetPythonPath()
+        {
+            var environmentVariables = Environment.GetEnvironmentVariables();
+            string pathVariable = environmentVariables["Path"] as string;
+            if (pathVariable != null)
+            {
+                string[] allPaths = pathVariable.Split(';');
+                foreach (var path in allPaths)
+                {
+                    string pythonPathFromEnv = path + "\\python.exe";
+                    if (File.Exists(pythonPathFromEnv))
+                        return pythonPathFromEnv;
+                }
+            }
+            return "";
+        }
+
         private void GenBut_Click(object sender, EventArgs e)
         {
             string str = "{ 'length' : '";
@@ -79,7 +98,8 @@ namespace Password_Generator_with_GUI
             // create new process start info
             ProcessStartInfo prcStartInfo = new ProcessStartInfo
             {
-                FileName = "python.exe",
+                //FileName = "python.exe",
+                FileName = GetPythonPath(),
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false
