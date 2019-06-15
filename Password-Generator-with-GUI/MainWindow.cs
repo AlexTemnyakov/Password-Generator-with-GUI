@@ -37,6 +37,9 @@ namespace Password_Generator_with_GUI
     {
         private Model m;
 
+        /*
+         * 
+        */ 
         public PasswordGenerator()
         {
             m = new Model();
@@ -49,36 +52,27 @@ namespace Password_Generator_with_GUI
             lengthOfPasswordUpDown.Minimum = 1;
         }
 
+        /*
+         * 
+        */ 
         private void CountOfPasswordsUpDown_ValueChanged(object sender, EventArgs e)
         {
             m.setCountOfPasswords(Convert.ToInt32(countOfPasswordsUpDown.Value));
             Console.WriteLine("Count" + m.getCountOfPasswords());
         }
 
+        /*
+         * 
+        */ 
         private void LengthOfPasswordUpDown_ValueChanged(object sender, EventArgs e)
         {
             m.setLengthOfPassword(Convert.ToInt32(lengthOfPasswordUpDown.Value));
             Console.WriteLine("Length" + m.getCountOfPasswords());
         }
 
-        // get python path from environtment variable
-        private string GetPythonPath()
-        {
-            var environmentVariables = Environment.GetEnvironmentVariables();
-            string pathVariable = environmentVariables["Path"] as string;
-            if (pathVariable != null)
-            {
-                string[] allPaths = pathVariable.Split(';');
-                foreach (var path in allPaths)
-                {
-                    string pythonPathFromEnv = path + "\\python.exe";
-                    if (File.Exists(pythonPathFromEnv))
-                        return pythonPathFromEnv;
-                }
-            }
-            return "";
-        }
-
+        /*
+         * 
+        */ 
         private void GenBut_Click(object sender, EventArgs e)
         {
             string str = "{ 'length' : '";
@@ -116,6 +110,26 @@ namespace Password_Generator_with_GUI
                 using (Process process = Process.Start(prcStartInfo)) { process.WaitForExit(); }
             }
             finally { File.Delete(argsFile); }
+        }
+
+        /* 
+         * get python path from environtment variable
+        */
+        private static string GetPythonPath()
+        {
+            var environmentVariables = Environment.GetEnvironmentVariables();
+            string pathVariable = environmentVariables["Path"] as string;
+            if (pathVariable != null)
+            {
+                string[] allPaths = pathVariable.Split(';');
+                foreach (var path in allPaths)
+                {
+                    string pythonPathFromEnv = path + "\\python.exe";
+                    if (File.Exists(pythonPathFromEnv))
+                        return pythonPathFromEnv;
+                }
+            }
+            return "";
         }
     }
 }
