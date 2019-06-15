@@ -6,3 +6,8 @@ If you want to use it, download the archive on the folder "DOWNLOAD", unzip it w
 
 # Requirments
 You need to install Python
+
+# Screenshots
+![First](Password-Generator-with-GUI/screenshots/1.jpg)
+
+![Second](Password-Generator-with-GUI/screenshots/2.jpg)
