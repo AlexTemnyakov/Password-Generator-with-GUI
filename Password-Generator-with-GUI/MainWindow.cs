@@ -84,6 +84,7 @@ namespace Password_Generator_with_GUI
             str += "' }";
             Console.WriteLine(checkBox1.Checked);
             Console.WriteLine(str);
+            Console.WriteLine(GetPythonPath());
             string pyScriptPath = "res\\src\\Python\\password_generator.py";
             // convert input arguments to JSON string
             BsonDocument argsBson = BsonDocument.Parse(str);
@@ -119,6 +120,7 @@ namespace Password_Generator_with_GUI
         {
             var environmentVariables = Environment.GetEnvironmentVariables();
             string pathVariable = environmentVariables["Path"] as string;
+            if (pathVariable == null) pathVariable = environmentVariables["PATH"] as string;
             if (pathVariable != null)
             {
                 string[] allPaths = pathVariable.Split(';');
