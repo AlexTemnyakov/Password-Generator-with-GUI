@@ -19,21 +19,27 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE. 
-v0.6
+SOFTWARE.
 """
 
 import random
 import sys
 import json
 
+symbols = []
 
 def generate_password(length):
     password = ""
-    for i in range(length):
-        # from 33 because all symbols before from 0 to 32 are not visible, 127 is not visible
+    for n in range(length):
         password += chr(random.randint(33, 127))
     return password
+
+def generate_password_digits_letters_only(length):
+    password = ""
+    for n in range(length):
+        password += chr(symbols[random.randint(0, len(symbols)-1)])
+    return password
+
     
 def save_passwords(listOfPasswords):
     with open("out\\passwords.txt", "w", encoding="utf-8") as file:
@@ -44,14 +50,49 @@ def save_passwords(listOfPasswords):
 
 
 if __name__ == "__main__":
-    filename = sys.argv[ 1 ]
-    with open(filename) as data_file:
-        input_args = json.loads(data_file.read())
-    length = int(input_args.get('length'))
-    count = int(input_args.get('count'))
-    listOfPasswords = []
-    for i in range(count):
-        listOfPasswords.append(generate_password(length))
-    save_passwords(listOfPasswords)
-
-
+    # make list of letters and digits
+    for i in range(10):
+        symbols.append(i + 48)
+    for i in range(26):
+        symbols.append(i + 65)
+    for i in range(26):
+        symbols.append(i + 97)
+    if len(sys.argv) > 1:
+        filename = sys.argv[1]
+        with open(filename) as data_file:
+            input_args = json.loads(data_file.read())
+        length = int(input_args.get('length'))
+        count = int(input_args.get('count'))
+        onlyLettersAndDigits = input_args.get('only letters and digits')
+        with open("out\\passwords.txt", "w", encoding="utf-8") as file:
+            i = 1
+            password = ""
+            if onlyLettersAndDigits == "true":
+                for n in range(count):
+                    password = generate_password_digits_letters_only(length)
+                    file.write(str(i) + ". Password: " + password + "\n")
+                    i += 1
+            else:
+                for n in range(count):
+                    password = generate_password(length)
+                    file.write(str(i) + ". Password: " + password + "\n")
+                    i += 1
+    else:
+        length = int(input("Enter password length "))
+        count = int(input("Enter the number of passwords you want to generate "))
+        onlyLettersAndDigits = "true"
+        with open("passwords.txt", "w", encoding="utf-8") as file:
+            i = 1
+            password = ""
+            if onlyLettersAndDigits == "true":
+                for n in range(count):
+                    password = generate_password_digits_letters_only(length)
+                    print(password)
+                    #file.write(str(i) + ". Password: " + password + "\n")
+                    i += 1
+            else:
+                for n in range(count):
+                    password = generate_password(length)
+                    print(password)
+                    #file.write(str(i) + ". Password: " + password + "\n")
+                    i += 1
